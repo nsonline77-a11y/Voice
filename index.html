@@ -3,121 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login | UI Design</title>
+    <title>SaaS Dashboard | UI Concept</title>
     <style>
-        /* CSS ආරම්භය */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif, system-ui;
         }
 
         body {
             display: flex;
-            justify-content: center;
+            height: 100vh;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Sidebar Style */
+        aside {
+            width: 260px;
+            background-color: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 40px;
+            display: flex;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%); /* ලස්සන Gradient එකක් */
+            gap: 10px;
         }
 
-        .login-container {
-            position: relative;
-            width: 400px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1); /* Glass effect */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            text-align: center;
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        h2 {
-            color: #fff;
-            font-weight: 600;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        .input-group {
-            position: relative;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            outline: none;
-            border-radius: 30px;
-            color: #fff;
-            font-size: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            outline: none;
-            border-radius: 30px;
-            background: #fff;
-            color: #2575fc;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #2575fc;
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .footer-links {
-            margin-top: 20px;
-        }
-
-        .footer-links a {
-            color: #fff;
+        .nav-item {
+            padding: 12px 16px;
             text-decoration: none;
-            font-size: 14px;
-            opacity: 0.8;
+            color: #64748b;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.2s;
+            cursor: pointer;
         }
 
-        .footer-links a:hover {
-            opacity: 1;
-            text-decoration: underline;
+        .nav-item:hover, .nav-item.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+
+        /* Main Content Area */
+        main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .content-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Tabs Section (Hidden by default) */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Welcome Back</h2>
-        <form>
-            <div class="input-group">
-                <input type="email" placeholder="Email Address" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <div class="footer-links">
-            <a href="#">Forgot Password?</a><br><br>
-            <a href="#">Don't have an account? Register</a>
+    <aside>
+        <div class="logo">
+            <div style="width: 30px; height: 30px; background: #2563eb; border-radius: 6px;"></div>
+            SaaSApp
         </div>
-    </div>
+        <nav>
+            <div class="nav-item active" onclick="openTab(event, 'dashboard')">Dashboard</div>
+            <div class="nav-item" onclick="openTab(event, 'projects')">Projects</div>
+            <div class="nav-item" onclick="openTab(event, 'settings')">Settings</div>
+        </nav>
+    </aside>
+
+    <main>
+        <div id="dashboard" class="tab-content active">
+            <div class="header">
+                <h1>Welcome Back, Nikila!</h1>
+                <p>Here's what's happening today.</p>
+            </div>
+            <div class="content-card">
+                <h3>Main Stats</h3>
+                <p style="margin-top: 10px; color: #64748b;">Dashboard content goes here. You can add charts or tables.</p>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="header">
+                <h1>My Projects</h1>
+                <p>Manage your active design projects.</p>
+            </div>
+            <div class="content-card">
+                <p>Project list will appear here.</p>
+            </div>
+        </div>
+
+        <div id="settings" class="tab-content">
+            <div class="header">
+                <h1>Settings</h1>
+                <p>Update your profile and preferences.</p>
+            </div>
+            <div class="content-card">
+                <p>Account settings and security options.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openTab(evt, tabName) {
+            // හැම tab content එකක්ම hide කරන්න
+            var i, tabcontent, navitems;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // හැම nav item එකකම active class එක අයින් කරන්න
+            navitems = document.getElementsByClassName("nav-item");
+            for (i = 0; i < navitems.length; i++) {
+                navitems[i].classList.remove("active");
+            }
+
+            // Click කරපු tab එක පෙන්වන්න සහ active class එක දාන්න
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
